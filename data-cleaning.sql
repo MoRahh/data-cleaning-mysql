@@ -79,6 +79,36 @@ WHERE row_num > 1;
 
 -- STANDARDIZING THE DATA
 
+SELECT company, TRIM(company)
+FROM data_staging2;
+
+UPDATE data_staging2
+SET company = TRIM(company);
+
+SELECT DISTINCT industry
+FROM data_staging2;
+
+UPDATE data_staging2
+SET industry = 'Crypto'
+WHERE industry LIKE 'Crypto%';
+
+SELECT DISTINCT country
+FROM data_staging2
+WHERE country LIKE 'United States%'
+ORDER BY 1;
+
+UPDATE data_staging2
+SET country = TRIM(TRAILING '.' FROM country)
+WHERE country LIKE 'United States%';
+
+SELECT `date`
+FROM data_staging2;
+
+UPDATE data_staging2
+SET `date` = STR_TO_DATE(`date`, '%m/%d/%Y');
+
+ALTER TABLE data_staging2
+MODIFY COLUMN `date` DATE;
 
 -- NULL VALUES
 
