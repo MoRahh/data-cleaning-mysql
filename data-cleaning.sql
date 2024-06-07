@@ -145,4 +145,20 @@ WHERE t1.industry IS NULL
 AND t2.industry IS NOT NULL;
 
 
--- REMOVING UNNECESSARY COLUMNS
+-- REMOVING UNNECESSARY COLUMNS OR ROWS
+SELECT *
+FROM data_staging2
+WHERE total_laid_off IS NULL
+AND percentage_laid_off IS NULL
+;
+
+DELETE 
+FROM data_staging2
+WHERE total_laid_off IS NULL
+AND percentage_laid_off IS NULL;
+
+SELECT *
+FROM data_staging2;
+
+ALTER TABLE data_staging2
+DROP COLUMN row_num;
